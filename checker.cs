@@ -15,6 +15,17 @@ class Checker
 
     }
 
+    static bool isUnderLimit(float limit, float value){
+
+        if(value > limit){
+
+            return false;
+        }
+
+        return true;
+
+    }
+
     static bool batteryIsOk(float temperature, float soc, float chargeRate) {
         if(isInRange(0,45,temperature)) {
             Console.WriteLine("Temperature is out of range!");
@@ -22,7 +33,7 @@ class Checker
         } else if(isInRange(20,80,soc)) {
             Console.WriteLine("State of Charge is out of range!");
             return false;
-        } else if(chargeRate > 0.8) {
+        } else if(isUnderLimit(0.8f,chargeRate)) {
             Console.WriteLine("Charge Rate is out of range!");
             return false;
         }

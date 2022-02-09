@@ -3,11 +3,23 @@ using System.Diagnostics;
 
 class Checker
 {
+
+    static bool isInRange(float minValue, float maxValue, float value){
+
+        if(value < minValue || value > maxValue){
+
+            return false;
+        }
+
+        return true;
+
+    }
+
     static bool batteryIsOk(float temperature, float soc, float chargeRate) {
-        if(temperature < 0 || temperature > 45) {
+        if(isInRange(0,45,temperature)) {
             Console.WriteLine("Temperature is out of range!");
             return false;
-        } else if(soc < 20 || soc > 80) {
+        } else if(isInRange(20,80,soc)) {
             Console.WriteLine("State of Charge is out of range!");
             return false;
         } else if(chargeRate > 0.8) {

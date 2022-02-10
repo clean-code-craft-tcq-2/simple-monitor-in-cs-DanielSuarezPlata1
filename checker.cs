@@ -27,17 +27,9 @@ class Checker
     }
 
     static bool batteryIsOk(float temperature, float soc, float chargeRate) {
-        if(isInRange(0,45,temperature)) {
-            Console.WriteLine("Temperature is out of range!");
-            return false;
-        } else if(isInRange(20,80,soc)) {
-            Console.WriteLine("State of Charge is out of range!");
-            return false;
-        } else if(isUnderLimit(0.8f,chargeRate)) {
-            Console.WriteLine("Charge Rate is out of range!");
-            return false;
-        }
-        return true;
+
+        return isInRange(0f,45f,temperature) && isInRange(20f,80f,soc) && isUnderLimit(0.8f,chargeRate);
+        
     }
 
     static void ExpectTrue(bool expression) {

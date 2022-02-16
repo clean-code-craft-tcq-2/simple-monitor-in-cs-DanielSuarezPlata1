@@ -41,7 +41,7 @@ class Checker
 
         if(value < minValue || value > maxValue){
 
-            isAtRisk(minValue, maxValue, value);
+            isInRiskRange(minValue, maxValue, value);
 
             return false;
         }
@@ -54,6 +54,8 @@ class Checker
 
         if(value > limit){
 
+            isInRiskLimit(limit, value);
+
             return false;
         }
 
@@ -61,7 +63,7 @@ class Checker
 
     }
 
-    static bool isAtRisk(float minValue, float maxValue, float value)
+    static bool isInRiskRange(float minValue, float maxValue, float value)
     {
         float warningTolerance = maxValue * 0.05f;
 
@@ -81,6 +83,27 @@ class Checker
         }
 
     }
+
+    
+    static bool isInRiskLimit(float maxValue, float value)
+    {
+        float warningTolerance = maxValue * 0.05f;
+
+        float upperLimit = maxValue - warningTolerance;
+
+        if (value > upperLimit)
+        {
+            Console.WriteLine("WARNING: Please check the battery levels");
+
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+
 
     //This functions "ExpectTrue" and "ExpectFalse" were cloned from the initial commit
     static void ExpectTrue(bool expression) {
